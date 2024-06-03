@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour {
 
     public float moveSpeed;
     public float maxSpeed;
-    public float speedFactor;
     public AnimationCurve AccelerationFactorFromDot;
     public float acceleration;
+    public float decelerationFactor;
     //public float bodyDrag;
     public float jumpForce;
     public float jumpCooldown;
@@ -51,14 +52,15 @@ public class PlayerControl : MonoBehaviour {
 
     private void Awake() {
         gravity = GetComponent<ConstantForce>();
-        gravity.force = new Vector3(0, -g, 0);
-        
         player = new Player();
         rb = GetComponentInChildren<Rigidbody>();
+
+        gravity.force = new Vector3(0, -g * rb.mass, 0);
+
         movement = player.main.Movement;
     }
 
-    private void FixedUpdate() {
+    private void Update() {
         
         
         Movement();
@@ -69,19 +71,41 @@ public class PlayerControl : MonoBehaviour {
     private void Movement() {
 
         //rb.drag = bodyDrag;
-        Vector2 move = new Vector3(movement.ReadValue<Vector2>().x, 0f, movement.ReadValue<Vector2>().y);
+        Vector3 move = new Vector3(movement.ReadValue<Vector2>().x, 0f, movement.ReadValue<Vector2>().y);
         //Vector3 unitGoal = new Vector3(move.x, 0f, move.y);
-        Vector3 goalVel = move * maxSpeed * speedFactor;
-        Vector3 m_goalVel = move * maxSpeed;
+        if (move != Vector3.zero)
+        {
+            Vector3 goalVel = move * maxSpeed;
+            Vector3 curVel = rb.velocity;
 
-        // Read input
-        // Take current velocity
-        // Take goal velocity
-        // Calculate needed acceleration in frame to reach goal velocity
+            Vector3 deltaVel = curVel - goalVel;
+
+            Vector3 accel = deltaVel.normalized * (acceleration * Time.fixedDeltaTime);
+
+            if (accel.sqrMagnitude > deltaVel.sqrMagnitude)
+            {
+                accel = deltaVel;
+            }
+
+            rb.AddForce(-accel * rb.mass);
+
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+
+        } else
+        {
+            Vector3 decel = -rb.velocity.normalized * (decelerationFactor * Time.fixedDeltaTime);
+            rb.AddForce(decel * rb.mass);
+
+            if (Vector3.Dot(rb.velocity, decel) < 0f)
+            {
+                rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+            }
+        }
+        
 
 
-        //float accel = acceleration * AccelerationFactorFromDot.
-        //rb.AddForce(new Vector3(mov.x * moveSpeed, 0, mov.y * moveSpeed));
+
+    
         
     }
 
