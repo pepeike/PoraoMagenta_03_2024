@@ -7,15 +7,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour {
 
-    public float moveSpeed;
+
+    public int hitPoints;
+    public int maxHitPoints;
+    
     public float maxSpeed;
-    public AnimationCurve AccelerationFactorFromDot;
+    
     public float acceleration;
     public float decelerationFactor;
     //public float bodyDrag;
     public float jumpForce;
     public float jumpCooldown;
     public float attackCooldown;
+    public float invulnerableCooldown;
 
     public float rideHeight;
 
@@ -40,6 +44,9 @@ public class PlayerControl : MonoBehaviour {
 
     private bool isGrounded;
     private bool jumpReady = true;
+    [HideInInspector]
+    public bool canMove = true;
+    private bool isInvulnerable;
 
     private bool isAttacking = false;
 
@@ -56,6 +63,7 @@ public class PlayerControl : MonoBehaviour {
         rb = GetComponentInChildren<Rigidbody>();
 
         gravity.force = new Vector3(0, -g * rb.mass, 0);
+        isInvulnerable = false;
 
         movement = player.main.Movement;
     }
@@ -70,43 +78,34 @@ public class PlayerControl : MonoBehaviour {
 
     private void Movement() {
 
-        //rb.drag = bodyDrag;
-        Vector3 move = new Vector3(movement.ReadValue<Vector2>().x, 0f, movement.ReadValue<Vector2>().y);
-        //Vector3 unitGoal = new Vector3(move.x, 0f, move.y);
-        if (move != Vector3.zero)
-        {
-            Vector3 goalVel = move * maxSpeed;
-            Vector3 curVel = rb.velocity;
+        if (canMove) {
+            Vector3 move = new Vector3(movement.ReadValue<Vector2>().x, 0f, movement.ReadValue<Vector2>().y);
 
-            Vector3 deltaVel = curVel - goalVel;
+            if (move != Vector3.zero) {
+                Vector3 goalVel = move * maxSpeed;
+                Vector3 curVel = rb.velocity;
 
-            Vector3 accel = deltaVel.normalized * (acceleration * Time.fixedDeltaTime);
+                Vector3 deltaVel = curVel - goalVel;
 
-            if (accel.sqrMagnitude > deltaVel.sqrMagnitude)
-            {
-                accel = deltaVel;
-            }
+                Vector3 accel = deltaVel.normalized * (acceleration * Time.fixedDeltaTime);
 
-            rb.AddForce(-accel * rb.mass);
+                if (accel.sqrMagnitude > deltaVel.sqrMagnitude) {
+                    accel = deltaVel;
+                }
 
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+                rb.AddForce(-accel * rb.mass);
 
-        } else
-        {
-            Vector3 decel = -rb.velocity.normalized * (decelerationFactor * Time.fixedDeltaTime);
-            rb.AddForce(decel * rb.mass);
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 
-            if (Vector3.Dot(rb.velocity, decel) < 0f)
-            {
-                rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+            } else {
+                Vector3 decel = -rb.velocity.normalized * (decelerationFactor * Time.fixedDeltaTime);
+                rb.AddForce(decel * rb.mass);
+
+                if (Vector3.Dot(rb.velocity, decel) < 0f) {
+                    rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+                }
             }
         }
-        
-
-
-
-    
-        
     }
 
     
@@ -148,10 +147,6 @@ public class PlayerControl : MonoBehaviour {
             rb.AddForce(rayDir * springForce);
 
         }
-
-        
-
-
     }
 
     
@@ -168,6 +163,8 @@ public class PlayerControl : MonoBehaviour {
         isAttacking = false;
     }
 
+    #region EnableDisable
+
     private void OnEnable() {
         player.main.Enable();
 
@@ -179,13 +176,15 @@ public class PlayerControl : MonoBehaviour {
         player.main.Disable();
     }
 
+    #endregion
+
     public void OnJump(InputAction.CallbackContext context) {
         if (jumpReady && isGrounded) {
             jumpReady = false;
             //rb.drag = bodyDrag;
             Jump();
 
-            Invoke("ResetJump", jumpCooldown);
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
 
@@ -204,6 +203,44 @@ public class PlayerControl : MonoBehaviour {
 
     }
 
+    
+
+    public void TakeDamage(int damage) {
+        if (!isInvulnerable) {
+            isInvulnerable = true;
+            StartCoroutine(CycleMovement());
+            hitPoints -= damage;
+            Invoke(nameof(ResetVulnerable), invulnerableCooldown);
+        }
+    }
+
+    public void ResetVulnerable() {
+        isInvulnerable = false;
+    }
+
+    IEnumerator CycleMovement() {
+        canMove = false;
+        yield return new WaitForSeconds(1);
+        canMove = true;
+    }
+
+    public void ToggleMovement() {
+        canMove = !canMove;
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("NPC Dialogue")) {
+            player.main.Quack.performed -= OnQuack;
+            player.main.Quack.performed += OnInteract;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.CompareTag("NPC Dialogue")) {
+            player.main.Quack.performed -= OnInteract;
+            player.main.Quack.performed += OnQuack;
+        }
+    }
 
     #region Gizmos
 
