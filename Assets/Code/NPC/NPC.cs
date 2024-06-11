@@ -21,8 +21,8 @@ public class NPC : MonoBehaviour {
 
 
     private void Awake() {
-        marker = GetComponentInChildren<TextMeshPro>().gameObject;
-        marker.SetActive(false);
+        //marker = GetComponentInChildren<TextMeshPro>().gameObject;
+        //marker.SetActive(false);
 
         
     }
@@ -33,13 +33,13 @@ public class NPC : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
-            marker.SetActive(true);
+            //marker.SetActive(true);
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
-            marker.SetActive(false);
+            //marker.SetActive(false);
         }
     }
 

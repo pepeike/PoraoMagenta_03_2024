@@ -40,7 +40,7 @@ public class PlayerControl : MonoBehaviour {
     private Player player;
     [HideInInspector]
     public InputAction movement;
-    
+    private GameObject closestNPC;
 
     private bool isGrounded;
     private bool jumpReady = true;
@@ -200,7 +200,7 @@ public class PlayerControl : MonoBehaviour {
     }
 
     public void OnInteract(InputAction.CallbackContext context) {
-
+        closestNPC.GetComponent<NPC>().Dialogue();
     }
 
     
@@ -232,6 +232,7 @@ public class PlayerControl : MonoBehaviour {
         if (other.CompareTag("NPC Dialogue")) {
             player.main.Quack.performed -= OnQuack;
             player.main.Quack.performed += OnInteract;
+            closestNPC = other.gameObject;
         }
     }
 

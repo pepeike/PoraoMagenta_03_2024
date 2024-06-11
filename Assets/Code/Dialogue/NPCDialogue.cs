@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 public class NPCDialogue : MonoBehaviour {
@@ -16,14 +18,15 @@ public class NPCDialogue : MonoBehaviour {
 
     public GameObject dialogueWindow;
 
-    public RawImage npcPortrait;
+    public Image npcPortrait;
     public TMP_Text NPCName;
     public TMP_Text dialogueText;
     public TMP_Text endMarker;
 
     [SerializeField] private AssetLabelReference labelReference;
-    private Dictionary<SpeakerPortrait, Sprite> portraitDictionary = new Dictionary<SpeakerPortrait, Sprite>();
+    private Dictionary<string, Sprite> portraitDictionary = new Dictionary<string, Sprite>();
 
+    AsyncOperationHandle<IList<Sprite>> loadHandle;
 
     public bool readyToSpeak;
     public bool dialogueStarted;
@@ -41,7 +44,24 @@ public class NPCDialogue : MonoBehaviour {
         readyToSpeak = true;
         dialogueStarted = false;
 
-        
+        LoadPortraits();
+        Debug.Log(portraitDictionary.Values);
+        DontDestroyOnLoad(transform);
+    }
+
+    private void LoadPortraits() {
+        List<Sprite> _port = new List<Sprite>();
+        loadHandle = Addressables.LoadAssetsAsync<Sprite>(labelReference,
+            addressable => {
+                _port.Add(addressable);
+            }
+        );
+        int i = 0;
+        foreach (Sprite sprite in _port) {
+            
+            portraitDictionary.Add( "portrait" + i, sprite);
+            i++;
+        }
     }
 
     public void InitializeDialogue(List<DialogueLine> dialogueSet) {
@@ -58,7 +78,15 @@ public class NPCDialogue : MonoBehaviour {
         dialogueStarted = true;
 
         dialogueIndex = 0;
-        activeLine = NPCLines[dialogueIndex];
+
+        if (portraitDictionary[NPCLines[dialogueIndex].portrait.ToString()] != null) {
+            npcPortrait.overrideSprite = portraitDictionary[NPCLines[dialogueIndex].portrait.ToString()];
+        } else {
+            npcPortrait.overrideSprite = null;
+            Debug.Log("Couldn't load portrait. Enum value: " + NPCLines[dialogueIndex].portrait.ToString());
+        }
+
+            activeLine = NPCLines[dialogueIndex];
         NPCName.text = activeLine.speaker;
         dialogueWindow.SetActive(true);
         
