@@ -52,7 +52,11 @@ public class PlayerControl : MonoBehaviour {
 
     private const float g = 9.81f;
     private ConstantForce gravity;
-    
+
+    [SerializeField]
+    private GameObject quackprefab;
+    [SerializeField]
+    private Transform quackexit;
 
     private Rigidbody rb;
 
@@ -69,8 +73,8 @@ public class PlayerControl : MonoBehaviour {
     }
 
     private void Update() {
-        
-        
+
+        Quack();
         Movement();
         //SpeedControl();
         GroundCheck();
@@ -117,6 +121,14 @@ public class PlayerControl : MonoBehaviour {
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
 
+        }
+    }
+
+    private void Quack()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Instantiate(quackprefab,quackexit.position, Quaternion.identity);
         }
     }
 
