@@ -23,6 +23,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - portraits
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bac7169e9e157cf4b94ce52541eadc60
+    m_Address: Assets/2D Assets/Portrait Sprites/placeholder2.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - portraits
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 766947ac4ea89044ea447bbd58e00527
+    m_Address: Assets/2D Assets/Portrait Sprites/placeholder0.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - portraits
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 441f3c93db6d43945b95340a0e120a12, type: 2}
   m_SchemaSet:

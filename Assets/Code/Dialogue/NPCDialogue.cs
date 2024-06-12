@@ -23,7 +23,11 @@ public class NPCDialogue : MonoBehaviour {
     public TMP_Text dialogueText;
     public TMP_Text endMarker;
 
-    [SerializeField] private AssetLabelReference labelReference;
+    [SerializeField]
+    private AssetLabelReference labelReference;
+    [SerializeField]
+    private List<Sprite> spr = new List<Sprite>();
+    [SerializeField]
     private Dictionary<string, Sprite> portraitDictionary = new Dictionary<string, Sprite>();
 
     AsyncOperationHandle<IList<Sprite>> loadHandle;
@@ -45,23 +49,30 @@ public class NPCDialogue : MonoBehaviour {
         dialogueStarted = false;
 
         LoadPortraits();
-        Debug.Log(portraitDictionary.Values);
+
+        
+        
         DontDestroyOnLoad(transform);
     }
 
+    
+
     private void LoadPortraits() {
-        List<Sprite> _port = new List<Sprite>();
+        //List<Sprite> _port = new List<Sprite>();
         loadHandle = Addressables.LoadAssetsAsync<Sprite>(labelReference,
             addressable => {
-                _port.Add(addressable);
+                //int i = 0;
+                portraitDictionary.Add(addressable.name, addressable);
             }
         );
-        int i = 0;
-        foreach (Sprite sprite in _port) {
+        
+        //int i = 0;
+        //foreach (Sprite sprite in spr) {
             
-            portraitDictionary.Add( "portrait" + i, sprite);
-            i++;
-        }
+        //    portraitDictionary.Add( "portrait" + i, sprite);
+            
+        //    i++;
+        //}
     }
 
     public void InitializeDialogue(List<DialogueLine> dialogueSet) {
@@ -80,6 +91,7 @@ public class NPCDialogue : MonoBehaviour {
         dialogueIndex = 0;
 
         if (portraitDictionary[NPCLines[dialogueIndex].portrait.ToString()] != null) {
+            Debug.Log(NPCLines[dialogueIndex].portrait.ToString());
             npcPortrait.overrideSprite = portraitDictionary[NPCLines[dialogueIndex].portrait.ToString()];
         } else {
             npcPortrait.overrideSprite = null;

@@ -74,7 +74,7 @@ public class PlayerControl : MonoBehaviour {
 
     private void Update() {
 
-        Quack();
+        //Quack();
         Movement();
         //SpeedControl();
         GroundCheck();
@@ -124,13 +124,7 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-    private void Quack()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Instantiate(quackprefab,quackexit.position, Quaternion.identity);
-        }
-    }
+    
 
     private void GroundCheck() {
 
@@ -182,6 +176,7 @@ public class PlayerControl : MonoBehaviour {
 
         player.main.Jump.performed += OnJump;
         player.main.Attack.performed += OnAttack;
+        player.main.Quack.performed += OnQuack;
     }
 
     private void OnDisable() {
@@ -208,7 +203,7 @@ public class PlayerControl : MonoBehaviour {
     }
 
     public void OnQuack(InputAction.CallbackContext context) {
-
+        Instantiate(quackprefab, quackexit.position, Quaternion.identity, transform);
     }
 
     public void OnInteract(InputAction.CallbackContext context) {

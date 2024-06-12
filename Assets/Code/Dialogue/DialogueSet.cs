@@ -5,8 +5,8 @@ using UnityEngine;
 
 
 public enum SpeakerPortrait {
-    portrait0,
-    portrait1
+    placeholder0,
+    placeholder1
 }
 
 
