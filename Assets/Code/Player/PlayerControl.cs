@@ -37,7 +37,7 @@ public class PlayerControl : MonoBehaviour {
     public GameObject playerBody;
     
 
-    private Player player;
+    public Player player;
     [HideInInspector]
     public InputAction movement;
     private GameObject closestNPC;
