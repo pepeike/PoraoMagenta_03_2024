@@ -52,7 +52,7 @@ public class NPCDialogue : MonoBehaviour {
 
         
         
-        DontDestroyOnLoad(transform);
+        
     }
 
     
