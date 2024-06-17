@@ -6,6 +6,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 
 public class IntroCutscene : MonoBehaviour
 {
@@ -15,8 +16,7 @@ public class IntroCutscene : MonoBehaviour
     [SerializeField]
     private NPCDialogue npcDialogue;
 
-    [SerializeField]
-    private ChangingImage cutscenestate;
+
 
     //public List<DialogueLine> lines;
     public List<DialogueLine> dialogueSet;
@@ -62,12 +62,23 @@ public class IntroCutscene : MonoBehaviour
         else
         {
             npcDialogue.NextText();
-           
-                cutscenestate.cutscenestate += 1;
-                cutscenestate.SwitchImageState();
-  
-            
+            EndIntro();
+
+
         }
+
+
+    }
+
+    public void EndIntro()
+    {
+        if(npcDialogue.activeLine == null)
+        {
+            SceneManager.LoadScene("Testing Grounds");
+        }
+        
+            
+
     }
 
 }

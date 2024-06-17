@@ -6,7 +6,10 @@ using UnityEngine;
 
 public enum SpeakerPortrait {
     placeholder0,
-    placeholder1
+    placeholder1,
+    SelectedPhoto1,
+    SelectedPhoto2,
+    SelectedPhoto3
 }
 
 

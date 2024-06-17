@@ -12,7 +12,7 @@ public class NPCDialogue : MonoBehaviour {
 
 
     public List<DialogueLine> NPCLines;
-    private DialogueLine activeLine;
+    public DialogueLine activeLine;
     private string NPCNameString;
     private int dialogueIndex;
 
@@ -110,7 +110,9 @@ public class NPCDialogue : MonoBehaviour {
 
     public void NextText() {
         if (readyToSpeak) {
+
             dialogueIndex++;
+            
             endMarker.gameObject.SetActive(false);
 
             if (dialogueIndex > NPCLines.Count - 1) {
@@ -118,6 +120,16 @@ public class NPCDialogue : MonoBehaviour {
             } else {
                 activeLine = NPCLines[dialogueIndex];
                 NPCName.text = activeLine.speaker;
+                if (portraitDictionary[NPCLines[dialogueIndex].portrait.ToString()] != null)
+                {
+                    Debug.Log(NPCLines[dialogueIndex].portrait.ToString());
+                    npcPortrait.overrideSprite = portraitDictionary[NPCLines[dialogueIndex].portrait.ToString()];
+                }
+                else
+                {
+                    npcPortrait.overrideSprite = null;
+                    Debug.Log("Couldn't load portrait. Enum value: " + NPCLines[dialogueIndex].portrait.ToString());
+                }
                 StartCoroutine(ShowText());
             }
         } else {
@@ -127,6 +139,7 @@ public class NPCDialogue : MonoBehaviour {
             readyToSpeak = true;
         }
         
+
 
 
     }

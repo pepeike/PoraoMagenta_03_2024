@@ -391,124 +391,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295121022}
   m_CullTransparentMesh: 1
---- !u!1 &389410812
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 389410813}
-  - component: {fileID: 389410815}
-  - component: {fileID: 389410814}
-  - component: {fileID: 389410816}
-  - component: {fileID: 389410817}
-  m_Layer: 5
-  m_Name: Cutscene Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &389410813
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389410812}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2125275266}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -964, y: -743}
-  m_SizeDelta: {x: 527.7841, y: 527.7841}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &389410814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389410812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &389410815
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389410812}
-  m_CullTransparentMesh: 1
---- !u!95 &389410816
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389410812}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e28ed190986ec548a12e985373645a6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &389410817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 389410812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed913c8db440cd40896bb1ff260f276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cutsceneimages:
-  - {fileID: 21300000, guid: 51fb620930ff0de478f973c05327b072, type: 3}
-  - {fileID: 21300000, guid: 4c792b0c99a9f73419f8e7945e0b1ba1, type: 3}
-  - {fileID: 21300000, guid: 07927de152deb6f48a52283b68b18f6b, type: 3}
-  cutscenestate: 0
-  animator: {fileID: 389410816}
-  imagetoshow: {fileID: 389410814}
-  intro: {fileID: 798056093}
 --- !u!1 &450476021
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,20 +684,19 @@ MonoBehaviour:
   portraitsReference:
     m_LabelString: portraits
   npcDialogue: {fileID: 2106200099}
-  cutscenestate: {fileID: 389410817}
   dialogueSet:
-  - portrait: 0
+  - portrait: 2
     lineIndex: 0
-    speaker: 
+    speaker: Narrador
     speakerLines: "Nosso protagonista, Al Quackone, l\xEDder da maior organiza\xE7\xE3o
       criminosa de sua cidade. Todos o temem, construiu seu nome com base em suas
       atitudes imperdo\xE1veis, nunca deixou ningu\xE9m sair ileso, sempre foi atr\xE1s
       de seus inimigos. Ao longo de sua vida, pavimentou seu status, este sendo inigual\xE1vel,
       imposs\xEDvel de se comparar.  "
     canShow: 1
-  - portrait: 0
+  - portrait: 2
     lineIndex: 0
-    speaker: 
+    speaker: Narrador
     speakerLines: "Todas as tardes ia at\xE9 seu escrit\xF3rio, que fica em frente
       ao parque, com a melhor vista para o lago, isso o dava controle total do mercado,
       nada saia de sua vis\xE3o. E mesmo se sa\xEDsse, sua persona dava pavor a todos.
@@ -823,30 +704,23 @@ MonoBehaviour:
       brilhantes, mas nada superava sua amada Fedora, nunca fora do lugar, perfeitamente
       colocada em uma angula\xE7\xE3o milimetricamente calculada."
     canShow: 1
-  - portrait: 0
+  - portrait: 2
     lineIndex: 0
-    speaker: 
+    speaker: Narrador
     speakerLines: "Sua figura imbat\xEDvel, seu nome, seu chap\xE9u tinha grande
       responsabilidade sobre tal. "
     canShow: 1
-  - portrait: 0
+  - portrait: 3
     lineIndex: 0
-    speaker: 
+    speaker: Narrador
     speakerLines: "Mas um dia tudo mudou, nosso protagonista acordou sentindo falta
       de algo, sua fedora. Procurou em todos os lugares, mas nada encontrou, at\xE9
       que, perto da janela de seu escrit\xF3rio encontrou pelos de um rato, era de
       seu maior inimigo, O Rei Queij\xE3o!! "
     canShow: 1
-  - portrait: 0
+  - portrait: 4
     lineIndex: 0
-    speaker: 
-    speakerLines: "Tendo isso em mente, O Pato decide ir atr\xE1s de sua amada Fedora,
-      sua jornada at\xE9 os confins da cidade ser\xE1 desafiadora, mas nada o impedir\xE1\u2026\u2026.Pelo
-      menos \xE9 o que ele pensa.  "
-    canShow: 1
-  - portrait: 0
-    lineIndex: 0
-    speaker: 
+    speaker: Narrador
     speakerLines: "Tendo isso em mente, O Pato decide ir atr\xE1s de sua amada Fedora,
       sua jornada at\xE9 os confins da cidade ser\xE1 desafiadora, mas nada o impedir\xE1\u2026\u2026.Pelo
       menos \xE9 o que ele pensa.  "
@@ -1134,7 +1008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -699, y: 53}
+  m_AnchoredPosition: {x: 0, y: 163}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2022002475
@@ -1150,7 +1024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1222,6 +1096,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCLines: []
+  activeLine:
+    portrait: 0
+    lineIndex: 0
+    speaker: 
+    speakerLines: 
+    canShow: 0
   dialogueWindow: {fileID: 1354339463}
   npcPortrait: {fileID: 2022002475}
   NPCName: {fileID: 232835305}
@@ -1465,7 +1345,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 987232961}
-  - {fileID: 389410813}
   - {fileID: 1354339464}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
