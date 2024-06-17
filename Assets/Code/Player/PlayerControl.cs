@@ -86,20 +86,25 @@ public class PlayerControl : MonoBehaviour {
             Vector3 move = new Vector3(movement.ReadValue<Vector2>().x, 0f, movement.ReadValue<Vector2>().y);
 
             if (move != Vector3.zero) {
-                Vector3 goalVel = move * maxSpeed;
-                Vector3 curVel = rb.velocity;
+                //Vector3 goalVel = move * maxSpeed;
+                //Vector3 curVel = rb.velocity;
 
-                Vector3 deltaVel = curVel - goalVel;
+                //Vector3 deltaVel = curVel - goalVel;
 
-                Vector3 accel = deltaVel.normalized * (acceleration * Time.fixedDeltaTime);
+                //Vector3 accel = deltaVel.normalized * (acceleration * Time.fixedDeltaTime);
 
-                if (accel.sqrMagnitude > deltaVel.sqrMagnitude) {
-                    accel = deltaVel;
+                //if (accel.sqrMagnitude > deltaVel.sqrMagnitude) {
+                //    accel = deltaVel;
+                //}
+
+                rb.AddForce(move * maxSpeed);
+
+                if (rb.velocity.x * rb.velocity.x > maxSpeed * maxSpeed || rb.velocity.z * rb.velocity.z > maxSpeed * maxSpeed) {
+                    Vector3 clamp = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+                    rb.velocity = new Vector3(clamp.x, rb.velocity.y, clamp.z);
                 }
 
-                rb.AddForce(-accel * rb.mass);
-
-                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+                //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 
             } else {
                 Vector3 decel = -rb.velocity.normalized * (decelerationFactor * Time.fixedDeltaTime);
