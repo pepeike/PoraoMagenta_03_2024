@@ -11,7 +11,7 @@ public class NPCDialogue : MonoBehaviour {
     private NPC activeNPC;
 
 
-    private List<DialogueLine> NPCLines;
+    public List<DialogueLine> NPCLines;
     private DialogueLine activeLine;
     private string NPCNameString;
     private int dialogueIndex;

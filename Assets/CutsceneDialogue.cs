@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class CutsceneDialogue : MonoBehaviour
 {
     [SerializeField]
-    private NPC npc;
+    private IntroCutscene npc;
 
     [SerializeField]
     private Player player;

@@ -35,6 +35,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - portraits
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51fb620930ff0de478f973c05327b072
+    m_Address: Assets/2D Assets/Portrait Sprites/SelectedPhoto1.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - portraits
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c792b0c99a9f73419f8e7945e0b1ba1
+    m_Address: Assets/2D Assets/Portrait Sprites/SelectedPhoto2.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - portraits
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 07927de152deb6f48a52283b68b18f6b
+    m_Address: Assets/2D Assets/Portrait Sprites/SelectedPhoto3.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - portraits
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 441f3c93db6d43945b95340a0e120a12, type: 2}
   m_SchemaSet:

@@ -503,9 +503,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutsceneimages:
   - {fileID: 21300000, guid: 51fb620930ff0de478f973c05327b072, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 4c792b0c99a9f73419f8e7945e0b1ba1, type: 3}
+  - {fileID: 21300000, guid: 07927de152deb6f48a52283b68b18f6b, type: 3}
   cutscenestate: 0
+  animator: {fileID: 389410816}
+  imagetoshow: {fileID: 389410814}
+  intro: {fileID: 798056093}
 --- !u!1 &450476021
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,7 +763,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 798056092}
-  - component: {fileID: 798056091}
+  - component: {fileID: 798056093}
   m_Layer: 0
   m_Name: DialogueToShow
   m_TagString: Untagged
@@ -768,33 +771,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &798056091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798056090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0bbc8507e376534ba6b8a7b95ba3b52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NPCName: Narrador
-  portraitsReference:
-    m_LabelString: 
-  npcDialogue: {fileID: 2106200099}
-  dialogueSet:
-  - portrait: 0
-    lineIndex: 0
-    speaker: Narrador
-    speakerLines: Lol
-    canShow: 1
-  - portrait: 0
-    lineIndex: 0
-    speaker: Narrador
-    speakerLines: noa
-    canShow: 1
 --- !u!4 &798056092
 Transform:
   m_ObjectHideFlags: 0
@@ -810,6 +786,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &798056093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798056090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9658f5312d6680546964ec8cc02ec5a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCName: Narrador
+  portraitsReference:
+    m_LabelString: portraits
+  npcDialogue: {fileID: 2106200099}
+  cutscenestate: {fileID: 389410817}
+  dialogueSet:
+  - portrait: 0
+    lineIndex: 0
+    speaker: 
+    speakerLines: "Nosso protagonista, Al Quackone, l\xEDder da maior organiza\xE7\xE3o
+      criminosa de sua cidade. Todos o temem, construiu seu nome com base em suas
+      atitudes imperdo\xE1veis, nunca deixou ningu\xE9m sair ileso, sempre foi atr\xE1s
+      de seus inimigos. Ao longo de sua vida, pavimentou seu status, este sendo inigual\xE1vel,
+      imposs\xEDvel de se comparar.  "
+    canShow: 1
+  - portrait: 0
+    lineIndex: 0
+    speaker: 
+    speakerLines: "Todas as tardes ia at\xE9 seu escrit\xF3rio, que fica em frente
+      ao parque, com a melhor vista para o lago, isso o dava controle total do mercado,
+      nada saia de sua vis\xE3o. E mesmo se sa\xEDsse, sua persona dava pavor a todos.
+      Sua gravata sempre perfeitamente amarrada, suas penas milimetricamente penteadas,
+      brilhantes, mas nada superava sua amada Fedora, nunca fora do lugar, perfeitamente
+      colocada em uma angula\xE7\xE3o milimetricamente calculada."
+    canShow: 1
+  - portrait: 0
+    lineIndex: 0
+    speaker: 
+    speakerLines: "Sua figura imbat\xEDvel, seu nome, seu chap\xE9u tinha grande
+      responsabilidade sobre tal. "
+    canShow: 1
+  - portrait: 0
+    lineIndex: 0
+    speaker: 
+    speakerLines: "Mas um dia tudo mudou, nosso protagonista acordou sentindo falta
+      de algo, sua fedora. Procurou em todos os lugares, mas nada encontrou, at\xE9
+      que, perto da janela de seu escrit\xF3rio encontrou pelos de um rato, era de
+      seu maior inimigo, O Rei Queij\xE3o!! "
+    canShow: 1
+  - portrait: 0
+    lineIndex: 0
+    speaker: 
+    speakerLines: "Tendo isso em mente, O Pato decide ir atr\xE1s de sua amada Fedora,
+      sua jornada at\xE9 os confins da cidade ser\xE1 desafiadora, mas nada o impedir\xE1\u2026\u2026.Pelo
+      menos \xE9 o que ele pensa.  "
+    canShow: 1
+  - portrait: 0
+    lineIndex: 0
+    speaker: 
+    speakerLines: "Tendo isso em mente, O Pato decide ir atr\xE1s de sua amada Fedora,
+      sua jornada at\xE9 os confins da cidade ser\xE1 desafiadora, mas nada o impedir\xE1\u2026\u2026.Pelo
+      menos \xE9 o que ele pensa.  "
+    canShow: 1
 --- !u!1 &987232960
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,8 +885,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -166, y: -101}
+  m_SizeDelta: {x: 760.8218, y: 427.9623}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &987232962
 MonoBehaviour:
@@ -860,14 +901,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 047b2401e9eb232448dc93415d71c935, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1109,7 +1150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1180,6 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3e78f46e5092440b2ef556e2c189e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCLines: []
   dialogueWindow: {fileID: 1354339463}
   npcPortrait: {fileID: 2022002475}
   NPCName: {fileID: 232835305}
@@ -1190,7 +1232,7 @@ MonoBehaviour:
   spr: []
   readyToSpeak: 0
   dialogueStarted: 0
-  letterTimer: 0.15
+  letterTimer: 0.03
 --- !u!114 &2106200100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,7 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7acea4614cb2f6c458b76c2a4d3aa494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc: {fileID: 798056091}
+  npc: {fileID: 798056093}
 --- !u!114 &2106200101
 MonoBehaviour:
   m_ObjectHideFlags: 0

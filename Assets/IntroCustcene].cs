@@ -7,10 +7,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-public class NPC : MonoBehaviour {
+public class IntroCutscene : MonoBehaviour
+{
     public string NPCName;
     [SerializeField] AssetLabelReference portraitsReference;
-    
+
     [SerializeField]
     private NPCDialogue npcDialogue;
 
@@ -23,43 +24,50 @@ public class NPC : MonoBehaviour {
     private GameObject marker;
 
 
-    private void Awake() {
+    private void Awake()
+    {
         //marker = GetComponentInChildren<TextMeshPro>().gameObject;
         //marker.SetActive(false);
 
-        
+
     }
 
 
-    
 
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Player")) {
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
             //marker.SetActive(true);
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-        if (other.gameObject.CompareTag("Player")) {
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
             //marker.SetActive(false);
         }
     }
 
-    public void Dialogue() {
-        //Debug.Log(dialogueSet[0].speaker);
-        if (npcDialogue.dialogueStarted == false) {
+    public void Dialogue()
+    {
+        Debug.Log(dialogueSet[0].speaker);
+        if (npcDialogue.dialogueStarted == false)
+        {
             npcDialogue.InitializeDialogue(dialogueSet);
-        } else {
+        }
+        else
+        {
             npcDialogue.NextText();
            
+                cutscenestate.cutscenestate += 1;
+                cutscenestate.SwitchImageState();
+  
+            
         }
     }
 
 }
-
-
-
-
-
-
