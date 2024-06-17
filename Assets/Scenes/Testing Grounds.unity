@@ -994,6 +994,7 @@ MonoBehaviour:
   portraitsReference:
     m_LabelString: 
   npcDialogue: {fileID: 971881801}
+  cutscenestate: {fileID: 0}
   dialogueSet:
   - portrait: 0
     lineIndex: 0
@@ -2052,6 +2053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3e78f46e5092440b2ef556e2c189e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCLines: []
   dialogueWindow: {fileID: 1545656693}
   npcPortrait: {fileID: 1341167104}
   NPCName: {fileID: 140327911}
@@ -8455,7 +8457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthcount: 3
-  Heart1: {fileID: 621097861}
+  Heart1: {fileID: 1016571818}
   Heart2: {fileID: 429679783}
   Heart3: {fileID: 1009916851}
 --- !u!114 &2134437964
