@@ -994,6 +994,7 @@ MonoBehaviour:
   portraitsReference:
     m_LabelString: 
   npcDialogue: {fileID: 971881801}
+  cutscenestate: {fileID: 0}
   dialogueSet:
   - portrait: 0
     lineIndex: 0
@@ -2052,6 +2053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a3e78f46e5092440b2ef556e2c189e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NPCLines: []
   dialogueWindow: {fileID: 1545656693}
   npcPortrait: {fileID: 1341167104}
   NPCName: {fileID: 140327911}
@@ -2485,7 +2487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 0
   maxHitPoints: 0
-  maxSpeed: 20
+  maxSpeed: 5
   acceleration: 50
   decelerationFactor: 10
   jumpForce: 15
@@ -2879,6 +2881,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286346864}
   m_CullTransparentMesh: 1
+--- !u!1 &1310065867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1310065871}
+  - component: {fileID: 1310065868}
+  m_Layer: 0
+  m_Name: CAMERA BOUNDS
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1310065868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310065867}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 81.31654, y: 35.24402, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1310065871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310065867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.053575, y: 13.21, z: -24.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1341167101
 GameObject:
   m_ObjectHideFlags: 0
@@ -3162,6 +3217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1717128906}
   - component: {fileID: 1717128905}
+  - component: {fileID: 1717128907}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -3224,6 +3280,23 @@ Transform:
   - {fileID: 298311}
   m_Father: {fileID: 282496285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1717128907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717128903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 1
+  m_BoundingVolume: {fileID: 1310065868}
+  m_BoundingShape2D: {fileID: 0}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
 --- !u!1 &1855346674
 GameObject:
   m_ObjectHideFlags: 0
@@ -8524,3 +8597,4 @@ SceneRoots:
   - {fileID: 971881802}
   - {fileID: 2101510853}
   - {fileID: 383929014}
+  - {fileID: 1310065871}
