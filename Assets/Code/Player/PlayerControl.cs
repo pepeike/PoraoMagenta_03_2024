@@ -1,25 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class PlayerControl : MonoBehaviour {
+public class PlayerControl : MonoBehaviour
+{
 
 
     public int hitPoints;
     public int maxHitPoints;
-    
+
     public float maxSpeed;
-    
+
     public float acceleration;
     public float decelerationFactor;
     //public float bodyDrag;
     public float jumpForce;
+    public float jumpMaxTime;
     public float jumpCooldown;
     public float attackCooldown;
     public float invulnerableCooldown;
+
+    private bool isJumping = false;
+    private float jumpTimer = 0;
 
     public float rideHeight;
 
@@ -35,7 +37,7 @@ public class PlayerControl : MonoBehaviour {
 
     public GameObject attackHitbox;
     public GameObject playerBody;
-    
+
 
     public Player player;
     [HideInInspector]
@@ -61,7 +63,8 @@ public class PlayerControl : MonoBehaviour {
     private Rigidbody rb;
 
 
-    private void Awake() {
+    private void Awake()
+    {
         gravity = GetComponent<ConstantForce>();
         player = new Player();
         rb = GetComponentInChildren<Rigidbody>();
@@ -72,20 +75,25 @@ public class PlayerControl : MonoBehaviour {
         movement = player.main.Movement;
     }
 
-    private void Update() {
+    private void Update()
+    {
 
         //Quack();
         Movement();
+        Jump();
         //SpeedControl();
         GroundCheck();
     }
 
-    private void Movement() {
+    private void Movement()
+    {
 
-        if (canMove) {
+        if (canMove)
+        {
             Vector3 move = new Vector3(movement.ReadValue<Vector2>().x, 0f, movement.ReadValue<Vector2>().y);
 
-            if (move != Vector3.zero) {
+            if (move != Vector3.zero)
+            {
                 //Vector3 goalVel = move * maxSpeed;
                 //Vector3 curVel = rb.velocity;
 
@@ -99,18 +107,22 @@ public class PlayerControl : MonoBehaviour {
 
                 rb.AddForce(move * maxSpeed);
 
-                if (rb.velocity.x * rb.velocity.x > maxSpeed * maxSpeed || rb.velocity.z * rb.velocity.z > maxSpeed * maxSpeed) {
+                if (rb.velocity.x * rb.velocity.x > maxSpeed * maxSpeed || rb.velocity.z * rb.velocity.z > maxSpeed * maxSpeed)
+                {
                     Vector3 clamp = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
                     rb.velocity = new Vector3(clamp.x, rb.velocity.y, clamp.z);
                 }
 
                 //rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 
-            } else {
+            }
+            else
+            {
                 Vector3 decel = -rb.velocity.normalized * (decelerationFactor * Time.fixedDeltaTime);
                 rb.AddForce(decel * rb.mass);
 
-                if (Vector3.Dot(rb.velocity, decel) < 0f) {
+                if (Vector3.Dot(rb.velocity, decel) < 0f)
+                {
                     rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
                 }
             }
@@ -119,31 +131,66 @@ public class PlayerControl : MonoBehaviour {
 
     
     // TODO: Make jump height dependent on button hold
-    private void Jump() {
+    private void Jump()
+    {
 
-        if (isGrounded) {
+        Debug.Log(jumpReady);
+        if (isJumping)
+        {
+            isGrounded = false;
+            jumpTimer += Time.deltaTime;
+            //rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Force);
 
-            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
+        if (jumpTimer >= jumpMaxTime || (jumpTimer < jumpMaxTime && jumpTimer > 0f && !isJumping))
+        {
+            isJumping = false;
+            jumpTimer = 0f;
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+        
+        
 
+        
+    }
+
+    public void OnJumpStart(InputAction.CallbackContext context)
+    {
+        if (jumpReady && isGrounded)
+        {
+            jumpReady = false;
+            isJumping = true;
+            //rb.drag = bodyDrag;
+            //Jump();
+
+            //Invoke(nameof(ResetJump), jumpCooldown);
         }
     }
 
-    
+    public void OnJumpCancel(InputAction.CallbackContext context)
+    {
+        isJumping = false;
+        jumpTimer = 0f;
+        Invoke(nameof(ResetJump), jumpCooldown);
+    }
 
-    private void GroundCheck() {
+    private void GroundCheck()
+    {
 
         isGrounded = Physics.Linecast(transform.position, transform.position - new Vector3(0f, rideHeight, 0f), isGround, QueryTriggerInteraction.Ignore);
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, rideHeight, isGround, QueryTriggerInteraction.Ignore);
 
-        if (isGrounded) {
-
+        if (isGrounded)
+        {
+            
             Vector3 vel = rb.velocity;
             Vector3 rayDir = transform.TransformDirection(Vector3.down);
 
             Vector3 otherVel = Vector3.zero;
             Rigidbody hitBody = hit.rigidbody;
-            if (hitBody != null) {
+            if (hitBody != null)
+            {
                 otherVel = hitBody.velocity;
             }
             float rayDirVel = Vector3.Dot(rayDir, vel);
@@ -160,13 +207,15 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-    
 
-    private void ResetJump() {
+
+    private void ResetJump()
+    {
         jumpReady = true;
     }
 
-    IEnumerator Attack() {
+    IEnumerator Attack()
+    {
         attackHitbox.SetActive(true);
         yield return new WaitForSeconds(0.15f);
         attackHitbox.SetActive(false);
@@ -176,49 +225,50 @@ public class PlayerControl : MonoBehaviour {
 
     #region EnableDisable
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         player.main.Enable();
 
-        player.main.Jump.performed += OnJump;
+        player.main.Jump.performed += OnJumpStart;
+        player.main.Jump.canceled += OnJumpCancel;
         player.main.Attack.performed += OnAttack;
         player.main.Quack.performed += OnQuack;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         player.main.Disable();
     }
 
     #endregion
 
-    public void OnJump(InputAction.CallbackContext context) {
-        if (jumpReady && isGrounded) {
-            jumpReady = false;
-            //rb.drag = bodyDrag;
-            Jump();
+    
 
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-    }
-
-    public void OnAttack(InputAction.CallbackContext context) {
-        if (!isAttacking) {
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (!isAttacking)
+        {
             isAttacking = true;
             StartCoroutine(Attack());
         }
     }
 
-    public void OnQuack(InputAction.CallbackContext context) {
+    public void OnQuack(InputAction.CallbackContext context)
+    {
         Instantiate(quackprefab, quackexit.position, Quaternion.identity, transform);
     }
 
-    public void OnInteract(InputAction.CallbackContext context) {
+    public void OnInteract(InputAction.CallbackContext context)
+    {
         closestNPC.GetComponent<NPC>().Dialogue();
     }
 
-    
 
-    public void TakeDamage(int damage) {
-        if (!isInvulnerable) {
+
+    public void TakeDamage(int damage)
+    {
+        if (!isInvulnerable)
+        {
             isInvulnerable = true;
             StartCoroutine(CycleMovement());
             hitPoints -= damage;
@@ -226,30 +276,37 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-    public void ResetVulnerable() {
+    public void ResetVulnerable()
+    {
         isInvulnerable = false;
     }
 
-    IEnumerator CycleMovement() {
+    IEnumerator CycleMovement()
+    {
         canMove = false;
         yield return new WaitForSeconds(1);
         canMove = true;
     }
 
-    public void ToggleMovement() {
+    public void ToggleMovement()
+    {
         canMove = !canMove;
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("NPC Dialogue")) {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("NPC Dialogue"))
+        {
             player.main.Quack.performed -= OnQuack;
             player.main.Quack.performed += OnInteract;
             closestNPC = other.gameObject;
         }
     }
 
-    private void OnTriggerExit(Collider other) {
-        if (other.CompareTag("NPC Dialogue")) {
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("NPC Dialogue"))
+        {
             player.main.Quack.performed -= OnInteract;
             player.main.Quack.performed += OnQuack;
         }
@@ -257,7 +314,8 @@ public class PlayerControl : MonoBehaviour {
 
     #region Gizmos
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmos()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - rideHeight, transform.position.z));
     }
