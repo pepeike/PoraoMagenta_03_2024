@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/3D Assets/Duck Idle2.fbx.meta
-guid: 8de97ef4a5ec73f45aabbefccd4b8588
-========
 guid: eb736c2655fe98349a120b2498c10895
->>>>>>>> parent of e0fa47a (3D Duck Idle + Walking):Assets/3D Assets/3D Duck Model.fbx.meta
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []

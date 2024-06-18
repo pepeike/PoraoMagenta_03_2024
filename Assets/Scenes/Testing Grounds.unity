@@ -1645,7 +1645,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 27f931d008ab1144fbc4a19c76b6bfcc, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1674,11 +1674,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642014010}
-<<<<<<< HEAD
-  m_Mesh: {fileID: 1886477255729933662, guid: 8de97ef4a5ec73f45aabbefccd4b8588, type: 3}
-=======
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
->>>>>>> parent of e0fa47a (3D Duck Idle + Walking)
 --- !u!4 &642014017
 Transform:
   m_ObjectHideFlags: 0
@@ -1697,30 +1693,6 @@ Transform:
   - {fileID: 390714872}
   m_Father: {fileID: 1109491793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
---- !u!95 &642014018
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642014010}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 17f1dc7f5cbbe10409bfd3690a57def2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
-=======
->>>>>>> parent of e0fa47a (3D Duck Idle + Walking)
 --- !u!1 &700078360
 GameObject:
   m_ObjectHideFlags: 0
