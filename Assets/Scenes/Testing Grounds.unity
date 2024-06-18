@@ -1595,7 +1595,6 @@ GameObject:
   - component: {fileID: 642014016}
   - component: {fileID: 642014015}
   - component: {fileID: 642014014}
-  - component: {fileID: 642014018}
   m_Layer: 0
   m_Name: Player Body
   m_TagString: Untagged
@@ -1675,7 +1674,11 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642014010}
+<<<<<<< HEAD
   m_Mesh: {fileID: 1886477255729933662, guid: 8de97ef4a5ec73f45aabbefccd4b8588, type: 3}
+=======
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+>>>>>>> parent of e0fa47a (3D Duck Idle + Walking)
 --- !u!4 &642014017
 Transform:
   m_ObjectHideFlags: 0
@@ -1684,8 +1687,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642014010}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1694,6 +1697,7 @@ Transform:
   - {fileID: 390714872}
   m_Father: {fileID: 1109491793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!95 &642014018
 Animator:
   serializedVersion: 5
@@ -1715,6 +1719,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+=======
+>>>>>>> parent of e0fa47a (3D Duck Idle + Walking)
 --- !u!1 &700078360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,12 +2082,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCLines: []
-  activeLine:
-    portrait: 0
-    lineIndex: 0
-    speaker: 
-    speakerLines: 
-    canShow: 0
   dialogueWindow: {fileID: 1545656693}
   npcPortrait: {fileID: 1341167104}
   NPCName: {fileID: 140327911}
