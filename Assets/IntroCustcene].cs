@@ -74,7 +74,7 @@ public class IntroCutscene : MonoBehaviour
     {
         if(npcDialogue.activeLine == null)
         {
-            SceneManager.LoadScene("Testing Grounds");
+            SceneManager.LoadScene("Level1");
         }
         
             
