@@ -134,14 +134,15 @@ public class PlayerControl : MonoBehaviour
     private void Jump()
     {
 
-        Debug.Log(jumpReady);
+        //Debug.Log(jumpReady);
         if (isJumping)
         {
             isGrounded = false;
             jumpTimer += Time.deltaTime;
+            float finalJumpForce = jumpForce / (1f + jumpTimer);
             //rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Force);
-
+            rb.AddForce(Vector3.up * finalJumpForce, ForceMode.Force);
+            
         }
         if (jumpTimer >= jumpMaxTime || (jumpTimer < jumpMaxTime && jumpTimer > 0f && !isJumping))
         {
@@ -159,6 +160,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (jumpReady && isGrounded)
         {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpReady = false;
             isJumping = true;
             //rb.drag = bodyDrag;

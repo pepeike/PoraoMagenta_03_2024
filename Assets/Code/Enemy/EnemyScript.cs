@@ -1,57 +1,90 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR.Haptics;
 
-public class EnemyScript : MonoBehaviour
-{
+public class EnemyScript : MonoBehaviour {
 
-    public GameObject target;
-    public enum State {Aggro,ReadyToAttack}
-    public State currentstate;
-    private void Start()
-    {
-        currentstate = State.Aggro;
+    [SerializeField]
+    private float maxDistance;
+    [SerializeField]
+    private float enemySpeed;
+    private Rigidbody rb;
+    private GameObject target;
+    private float distanceToTarget;
+
+    private bool isAttacking;
+
+    public enum State {
+        Idle,
+        Aggro,
+        ReadyToAttack
     }
-    void Update()
-    {
-        if (currentstate == State.Aggro)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 0.003f);
-        }
-       
-        if (currentstate == State.ReadyToAttack)
-        {
+    private State currentstate;
+    private void Start() {
+        rb = GetComponent<Rigidbody>();
+        currentstate = State.Idle;
+        isAttacking = false;
+    }
+    void Update() {
 
-            Debug.Log("GettingReadyToAttack!");
-        }
+        StateMachine();
 
+        
     }
 
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            currentstate=State.ReadyToAttack;
+    private void StateMachine() {
+        switch (currentstate) {
+            case State.Idle:
+                break;
+            case State.Aggro:
+                Vector3 playerEnemyOffset = target.transform.position - transform.position;
+                distanceToTarget = Vector3.SqrMagnitude(playerEnemyOffset);
+                //Debug.Log(distanceToTarget);
+                rb.velocity = playerEnemyOffset.normalized * enemySpeed;
+                if (distanceToTarget <= maxDistance * maxDistance) {
+                    Debug.Log("Changing State");
+                    currentstate = State.ReadyToAttack;
+                }
+                break;
+            case State.ReadyToAttack:
+                rb.velocity = Vector3.zero;
+                Debug.Log("GettingReadyToAttack!");
+                if (!isAttacking) {
+                    isAttacking = true;
+                    StartCoroutine(AttackWindUp());
+                }
+                break;
         }
     }
     
-    IEnumerator AttackWindUp()
-    {
+
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag("Player")) {
+            //currentstate = State.ReadyToAttack;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Player")) {
+            target = other.gameObject;
+            currentstate = State.Aggro;
+            //Debug.Log(currentstate + " " + target);
+        }
+    }
+
+    IEnumerator AttackWindUp() {
 
         yield return new WaitForSeconds(3);
         Attack();
     }
 
-    private void Attack()
-    {
+    private void Attack() {
         Debug.Log("Attacked");
         ReturnToAggro();
     }
 
-    private void ReturnToAggro()
-    {
+    private void ReturnToAggro() {
         currentstate = State.Aggro;
+        isAttacking = false;
     }
 }
