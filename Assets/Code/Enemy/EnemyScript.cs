@@ -7,6 +7,8 @@ public class EnemyScript : MonoBehaviour {
     private float maxDistance;
     [SerializeField]
     private float enemySpeed;
+    [SerializeField]
+    private SphereCollider damageHitbox;
     private Rigidbody rb;
     private GameObject target;
     private float distanceToTarget;
@@ -23,6 +25,8 @@ public class EnemyScript : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         currentstate = State.Idle;
         isAttacking = false;
+        damageHitbox.enabled = false;
+        damageHitbox.gameObject.SetActive(true);
     }
     void Update() {
 
@@ -40,13 +44,15 @@ public class EnemyScript : MonoBehaviour {
                 distanceToTarget = Vector3.SqrMagnitude(playerEnemyOffset);
                 //Debug.Log(distanceToTarget);
                 rb.velocity = playerEnemyOffset.normalized * enemySpeed;
+                damageHitbox.transform.position = transform.position + new Vector3(playerEnemyOffset.normalized.x * maxDistance/2, 0f, playerEnemyOffset.normalized.z * maxDistance/2);
                 if (distanceToTarget <= maxDistance * maxDistance) {
-                    Debug.Log("Changing State");
+                    //Debug.Log("Changing State");
                     currentstate = State.ReadyToAttack;
                 }
                 break;
             case State.ReadyToAttack:
                 rb.velocity = Vector3.zero;
+                
                 Debug.Log("GettingReadyToAttack!");
                 if (!isAttacking) {
                     isAttacking = true;
@@ -65,26 +71,36 @@ public class EnemyScript : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Player")) {
+        if (other.gameObject.CompareTag("Player") && currentstate == State.Idle) {
             target = other.gameObject;
             currentstate = State.Aggro;
+            GetComponent<SphereCollider>().enabled = false;
             //Debug.Log(currentstate + " " + target);
         }
     }
 
     IEnumerator AttackWindUp() {
 
-        yield return new WaitForSeconds(3);
-        Attack();
+        yield return new WaitForSeconds(2);
+        damageHitbox.gameObject.SetActive(true);
+        damageHitbox.enabled = true;
+        yield return new WaitForSeconds(1);
+        damageHitbox.enabled = false;
+        damageHitbox.gameObject.SetActive(false);
+        Invoke(nameof(ReturnToAggro), 1f);
     }
 
     private void Attack() {
-        Debug.Log("Attacked");
+        //Debug.Log("Attacked");
         ReturnToAggro();
     }
 
     private void ReturnToAggro() {
         currentstate = State.Aggro;
         isAttacking = false;
+    }
+
+    public void TakeDamage() {
+        Destroy(gameObject);
     }
 }

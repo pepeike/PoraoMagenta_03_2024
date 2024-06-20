@@ -71,6 +71,8 @@ public class PlayerControl : MonoBehaviour
 
         gravity.force = new Vector3(0, -g * rb.mass, 0);
         isInvulnerable = false;
+        attackHitbox.GetComponent<BoxCollider>().enabled = false;
+        attackHitbox.SetActive(false);
 
         movement = player.main.Movement;
     }
@@ -219,7 +221,9 @@ public class PlayerControl : MonoBehaviour
     IEnumerator Attack()
     {
         attackHitbox.SetActive(true);
-        yield return new WaitForSeconds(0.15f);
+        attackHitbox.GetComponent<BoxCollider>().enabled = true;
+        yield return new WaitForSeconds(0.3f);
+        attackHitbox.GetComponent<BoxCollider>().enabled = false;
         attackHitbox.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
