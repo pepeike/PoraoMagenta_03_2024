@@ -1019,8 +1019,8 @@ MonoBehaviour:
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
-    speakerLines: "Calma, calma, calma, eu vou te contar. - A cisne estremece. -
-      Mas antes, obrigada por n\xE3o me subestimar como advers\xE1ria."
+    speakerLines: "Calma, calma, calma, eu vou te contar.  Mas antes, obrigada por
+      n\xE3o me subestimar como advers\xE1ria."
     canShow: 1
   - portrait: 0
     lineIndex: 0
@@ -1039,24 +1039,22 @@ MonoBehaviour:
     speaker: Al Quackone
     speakerLines: "Cisne, N\xE3o existe isso de dignidade, voc\xEA est\xE1 no meu
       caminho e eu preciso passar, f\xEAmea, macho ou qualquer outro, todos s\xE3o
-      meus inimigos. - O Pato olha s\xE9rio para o jogador."
+      meus inimigos. "
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
-    speakerLines: "Que resposta horr\xEDvel, meu Deus. - A Cisne come\xE7a a rir
-      baixo, deixando O Pato um pouco envergonhado."
+    speakerLines: "Que resposta horr\xEDvel, meu Deus. "
     canShow: 0
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
-    speakerLines: "Que resposta horr\xEDvel, meu Deus. - A Cisne come\xE7a a rir
-      baixo, deixando O Pato um pouco envergonhado."
+    speakerLines: "Que resposta horr\xEDvel, meu Deus. "
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Al Quackone
-    speakerLines: "Voc\xEA entendeu. Enfim, onde ele est\xE1?? - O Pato muda de assunto."
+    speakerLines: "Voc\xEA entendeu. Enfim, onde ele est\xE1?? "
     canShow: 1
   - portrait: 0
     lineIndex: 0

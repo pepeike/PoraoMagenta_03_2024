@@ -160,76 +160,69 @@ MonoBehaviour:
   - portrait: 0
     lineIndex: 0
     speaker: Al Quackone
-    speakerLines: "Onde ele est\xE1?! - Sua express\xE3o irritada. O sangue de seus
-      inimigos em suas penas complementa seu visual assustador."
+    speakerLines: "Onde ele est\xE1?! "
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Capanga
-    speakerLines: Quem? - Um dos pardais pergunta, desesperado.
+    speakerLines: Quem?
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Al Quackone
-    speakerLines: "O Rato!! - O Pato, impaciente, grita, com as veias pulsando em
-      sua testa. - Onde ele est\xE1?! Me responda!!"
+    speakerLines: 'O Rato!! '
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Capanga
-    speakerLines: "Te perguntou. \U0001F602 - Todos caem na gargalhada, menos O Pato,
-      que tem seus olhos tomados por f\xFAria."
+    speakerLines: "Te perguntou. \U0001F602."
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Al Quackone
-    speakerLines: "DESGRA\xC7ADO!! ONDE EST\xC1 O SEU CHEFE?! - Ele segura o pardal
-      que disse tal blasf\xEAmia e o estapeia, desacordado-o.."
+    speakerLines: "DESGRA\xC7ADO!! ONDE EST\xC1 O SEU CHEFE?! peia, desacordado-o.."
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Al Quackone
     speakerLines: "Acho bom responderem se n\xE3o quiserem acabar como seu amigo!!
-      - Ele fita seus advers\xE1rios, cansados e fatigados no ch\xE3o."
+      no ch\xE3o."
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: ???
     speakerLines: "N\xE3o adianta perguntar para eles, s\xE3o pequenos demais para
-      uma informa\xE7\xE3o grandiosa dessas. S\xF3 os maiores sabem onde ELE est\xE1.
-      - Um indiv\xEDduo de m\xE9dio porte, nunca visto antes, ofusca a vista de nosso
-      protagonista, ele abre suas belas asas, quase que em uma harmonia angelical.
+      uma informa\xE7\xE3o grandiosa dessas. S\xF3 os maiores sabem onde ELE est\xE1. 
+      nosso protagonista, ele abre suas belas asas, quase que em uma harmonia angelical.
       Ao reparar em tal design, O Pato estremece, mas disfar\xE7a para que seus inimigos
       n\xE3o notem."
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Al Quackone
-    speakerLines: E quem seria o senhor? - Ele olha para o cisne.
+    speakerLines: 'E quem seria o senhor? '
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Capanga
-    speakerLines: "Na verdade \xE9 A Senhora - Corrige um dos pardais."
+    speakerLines: "Na verdade \xE9 A Senhora "
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Al Quackone
-    speakerLines: "Ah, perd\xE3o. - O Pato pigarreia. - E quem seria A Senhora? -
-      Ele olha para a Cisne."
+    speakerLines: "Ah, perd\xE3o. E quem seria A Senhora? "
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Capanga
-    speakerLines: "\xC9 A PEIDONA da nossa chefe, Sra. Cisne - Eles d\xE3o risadinhas.
-      - Ela se acha A maioral porque est\xE1 em uma posi\xE7\xE3o mais privilegiada
-      que n\xF3s na empresa, mas \xE9 uma bunda mole."
+    speakerLines: "\xC9 A PEIDONA da nossa chefe, Sra. Cisne  Ela se acha A maioral
+      porque est\xE1 em uma posi\xE7\xE3o mais privilegiada que n\xF3s na empresa,
+      mas \xE9 uma bunda mole."
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
-    speakerLines: "BLASF\xCAMIA!! COMO OUSAM FALAR ASSIM DE SUA SUPERIOR?! - Ela
-      grasna e bate as asas gerando uma onda de vento. Fazendo todos estremecerem."
+    speakerLines: "BLASF\xCAMIA!! COMO OUSAM FALAR ASSIM DE SUA SUPERIOR?! "
     canShow: 1
   - portrait: 0
     lineIndex: 0
@@ -240,20 +233,19 @@ MonoBehaviour:
   - portrait: 0
     lineIndex: 0
     speaker: Capangas
-    speakerLines: "N\xD3S NOS DEMITIMOS. - Eles gritam em coro levantando as asinhas
-      e em seguida se retiram da cena."
+    speakerLines: "N\xD3S NOS DEMITIMOS. "
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Al Quackone
     speakerLines: "E \xE9 por isso que todos os trabalhadores precisam de um sindicado
-      forte e estruturado. - Afirma nosso protagonista."
+      forte e estruturado. "
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
     speakerLines: "Voc\xEA fala isso mas eu duvido que OS SEUS capangas tenham um
-      sindicato. - Indaga A Cisne."
+      sindicato. "
     canShow: 1
   - portrait: 0
     lineIndex: 0
@@ -264,8 +256,7 @@ MonoBehaviour:
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
-    speakerLines: COMO OUSA?! - Ela esbraveja, fitando O Pato com desprezo, se sentindo
-      ofendida pela fala direcionada ao Rato.
+    speakerLines: 'COMO OUSA?! '
     canShow: 1
   - portrait: 0
     lineIndex: 0
@@ -276,25 +267,25 @@ MonoBehaviour:
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
-    speakerLines: "E como ousa fazer tal coisa!!! Meu amado Rato, nunca errou. -
-      A Cisne aponta para o c\xE9u, como que agradecendo."
+    speakerLines: E como ousa fazer tal coisa!!! Meu amado Rato, nunca errou. que
+      agradecendo.
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Al Quackone
     speakerLines: "Acho que algu\xE9m aqui gosta DEMAIS (ele pisca para o jogador)
-      do chefe rs. - O Pato d\xE1 uma risadinha."
+      do chefe rs. "
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
-    speakerLines: Chega de papo furado. - A Cisne cora. - Estamos aqui para resolver
-      as coisas como verdadeiras aves! COM HONRA!
+    speakerLines: Chega de papo furado. Estamos aqui para resolver as coisas como
+      verdadeiras aves! COM HONRA!
     canShow: 1
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
-    speakerLines: "Sil\xEAncio sua patinha feia. - E ele se prepara."
+    speakerLines: "Sil\xEAncio sua patinha feia. "
     canShow: 1
 --- !u!4 &205539628
 Transform:
