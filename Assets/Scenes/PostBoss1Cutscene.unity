@@ -973,7 +973,7 @@ MonoBehaviour:
   - portrait: 0
     lineIndex: 0
     speaker: Narrador
-    speakerLines: "penas para todos os lados, granados e bicadas, at\xE9 que, momentos
+    speakerLines: "Penas para todos os lados, granados e bicadas, at\xE9 que, momentos
       depois, um vencedor surge, O Pato, cansado de tantos conflitos e tanto brigar,
       questiona, por um momento, suas a\xE7\xF5es e suas atitudes"
     canShow: 1
@@ -985,7 +985,7 @@ MonoBehaviour:
       esse que o assombra do momento que acorda ao que vai dormir. Sua mente \xE9
       inundada por lembran\xE7as de sua m\xE3e, l\xE1grimas amea\xE7am cair de seus
       olhos, mas ele as segura, n\xE3o est\xE1 no momento certo de chorar.   "
-    canShow: 1
+    canShow: 0
   - portrait: 0
     lineIndex: 0
     speaker: Narrador
@@ -1046,7 +1046,7 @@ MonoBehaviour:
     speaker: Sra. Cisne
     speakerLines: "Que resposta horr\xEDvel, meu Deus. - A Cisne come\xE7a a rir
       baixo, deixando O Pato um pouco envergonhado."
-    canShow: 1
+    canShow: 0
   - portrait: 0
     lineIndex: 0
     speaker: Sra. Cisne
