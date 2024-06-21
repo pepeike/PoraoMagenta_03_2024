@@ -14,5 +14,32 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Boss1.unity
     guid: 2bbce57e0e5ecaf4eb15516f72866149
+  - enabled: 1
+    path: Assets/Scenes/PreLevel2Cutscene.unity
+    guid: 297cdb938fb0e2e449e853fa49528a48
+  - enabled: 1
+    path: Assets/Scenes/Boss2.unity
+    guid: 401a1a557b0c6d649b5c24f9c9b326e7
+  - enabled: 1
+    path: Assets/Scenes/Fin.unity
+    guid: 55ca10e6fa6a7fd409d5524cb3bccbd6
+  - enabled: 1
+    path: Assets/Scenes/FinalCutscene.unity
+    guid: 59db5367ddbf2a04994a45ed8e15d03b
+  - enabled: 1
+    path: Assets/Scenes/IntroCutscene.unity
+    guid: 22fc86445bb5e4d4d985c62934568c68
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 2fb0bc7781abffd44adcf28cbf85f209
+  - enabled: 1
+    path: Assets/Scenes/PostBoss1Cutscene.unity
+    guid: 7956de89481569042bb255fdfa6a37df
+  - enabled: 1
+    path: Assets/Scenes/PostLevel1Custcene.unity
+    guid: 518c6706dfb0f19449850ea858f5d5d7
+  - enabled: 1
+    path: Assets/Scenes/PostLevel2Cutscene.unity
+    guid: da3e68bcaa18ac44db114f33a5e99ff9
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3972b1a6a8a71a74a81f3aaafed4ac76, type: 2}
