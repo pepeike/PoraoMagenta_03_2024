@@ -8,6 +8,6 @@ public class ChangeScene : MonoBehaviour
 {
    public void SceneEnd()
     {
-        SceneManager.LoadScene("Testing Grounds");
+        SceneManager.LoadScene("Level1");
     }
 }
