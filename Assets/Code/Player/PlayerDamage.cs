@@ -25,12 +25,20 @@ public class PlayerDamage : MonoBehaviour
             didDamage = true;
             other.GetComponent<EnemyLife>().TakeDamage(damage);
         }
+        if (!didDamage && other.gameObject.CompareTag("Boss Hitbox")) {
+            didDamage = true;
+            other.GetComponent<BossLife>().TakeDamage(damage);
+        }
     }
 
     private void OnTriggerStay(Collider other) {
         if (!didDamage && other.gameObject.CompareTag("Enemy Hitbox")) {
             didDamage = true;
             other.GetComponent<EnemyLife>().TakeDamage(damage);
+        }
+        if (!didDamage && other.gameObject.CompareTag("Boss Hitbox")) {
+            didDamage = true;
+            other.GetComponent<BossLife>().TakeDamage(damage);
         }
     }
 
