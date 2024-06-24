@@ -11,6 +11,8 @@ public class CameraControl : MonoBehaviour {
 
     private GameObject playerBody;
 
+    private Vector3 dirVec3 = Vector3.right;
+
     private void Awake() {
         playerControl = GetComponent<PlayerControl>();
         playerBody = playerControl.playerBody;
@@ -18,8 +20,14 @@ public class CameraControl : MonoBehaviour {
 
     private void LateUpdate() {
         Vector2 dir = playerControl.movement.ReadValue<Vector2>();
-        LookAt.localPosition = new Vector3(dir.x, 0, dir.y);
-        playerBody.transform.LookAt(LookAt, Vector3.up);
+        
+        if (dir != Vector2.zero ) {
+            dirVec3 = new Vector3(dir.x, 0f, dir.y);
+        }
+        
+        playerBody.transform.forward = dirVec3;
+        
+        
         
     }
 
