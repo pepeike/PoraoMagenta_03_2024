@@ -70,7 +70,7 @@ public class PostBoss1Custcene : MonoBehaviour
     {
         if (npcDialogue.activeLine == null)
         {
-            SceneManager.LoadScene("Level2");
+            SceneManager.LoadScene("PreLevel2Cutscene");
         }
 
 
