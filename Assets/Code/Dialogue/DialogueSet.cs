@@ -32,7 +32,13 @@ public enum SpeakerPortrait {
     cisne_irritada,
     cisne_medo,
     cisne_neutra,
-    narrator
+    narrator,
+    rato_desprezo,
+    rato_machucado,
+    rato_muito_serio_machucado,
+    rato_neutro,
+    rato_silhueta,
+    rato_serio_machucado,
 }
 
 
