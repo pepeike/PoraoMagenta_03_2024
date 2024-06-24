@@ -132,7 +132,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     
-    // TODO: Make jump height dependent on button hold
+    
     private void Jump()
     {
 
