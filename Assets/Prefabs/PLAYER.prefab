@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7745829913065185931}
   - component: {fileID: 719684656781311849}
+  - component: {fileID: 8016712871717668255}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
@@ -53,6 +54,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8016712871717668255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227460269594752091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33b265e26ff0cf48afb5e382c16225c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &3056512089660520139
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +81,7 @@ GameObject:
   - component: {fileID: 6165895057057352716}
   m_Layer: 0
   m_Name: Player Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5230,7 +5244,7 @@ GameObject:
   - component: {fileID: 310671097277879522}
   m_Layer: 0
   m_Name: PLAYER
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
