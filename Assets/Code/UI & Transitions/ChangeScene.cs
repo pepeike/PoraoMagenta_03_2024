@@ -8,6 +8,6 @@ public class ChangeScene : MonoBehaviour
 {
    public void SceneEnd()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("IntroCutscene");
     }
 }
