@@ -34,8 +34,8 @@ public class PlayerControl : MonoBehaviour
     private LayerMask isGround;
     [SerializeField]
     private float playerHeight;
-    [SerializeField]
-    private Animator anim;
+    //[SerializeField]
+    //private Animator anim;
 
     public GameObject attackHitbox;
     public GameObject playerBody;
@@ -50,7 +50,7 @@ public class PlayerControl : MonoBehaviour
     private bool jumpReady = true;
     [HideInInspector]
     public bool canMove = true;
-    private bool isInvulnerable;
+    public bool isInvulnerable;
 
     private bool isAttacking = false;
 
@@ -98,7 +98,7 @@ public class PlayerControl : MonoBehaviour
 
             if (move != Vector3.zero)
             {
-                anim.SetBool("moving", true);
+                //anim.SetBool("moving", true);
                 //Vector3 goalVel = move * maxSpeed;
                 //Vector3 curVel = rb.velocity;
 
@@ -125,7 +125,7 @@ public class PlayerControl : MonoBehaviour
             {
                 Vector3 decel = -rb.velocity.normalized * (decelerationFactor * Time.fixedDeltaTime);
                 rb.AddForce(decel * rb.mass);
-                anim.SetBool("moving", false);
+                //anim.SetBool("moving", false);
 
                 if (Vector3.Dot(rb.velocity, decel) < 0f)
                 {
