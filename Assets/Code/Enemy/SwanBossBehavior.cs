@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwanBossBehavior : MonoBehaviour {
 
@@ -52,6 +54,12 @@ public class SwanBossBehavior : MonoBehaviour {
         currentState = State.idle;
         prevState = State.flyAttack;
         charge.SetActive(false);
+
+        GetComponent<BossLife>().OnZeroLife += OnDeath;
+    }
+
+    private void OnDeath(object sender, EventArgs e) {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void Update() {

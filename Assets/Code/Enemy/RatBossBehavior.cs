@@ -91,6 +91,7 @@ public class RatBossBehavior : MonoBehaviour {
                 ReturnToCenter();
                 break;
             case State.finalAttack:
+                FinalAttack();
                 break;
         }
     }
@@ -150,24 +151,35 @@ public class RatBossBehavior : MonoBehaviour {
     }
 
     private Vector3 goToPoint;
-    private bool relocating = false;
+    private bool startingAtk = false;
+    private float distToPoint;
 
     private void CallAttack() {
         isInvulnerable = true;
-        if (relocating && startedAtk) {
-            goToPoint = GetFurthestPoint();
-            moveDir = goToPoint - transform.position;
-            rb.velocity = moveDir.normalized * (chargeAttackSpeed * 1.5f);
-        }
-
+        
+        
         if (!gotDir && !startedAtk) {
             goToPoint = GetFurthestPoint();
-            
+            distToPoint = Vector3.Distance(transform.position, goToPoint);
             moveDir = goToPoint - transform.position;
             
             gotDir = true;
-        } else {
+        } else if (gotDir && !startedAtk && distToPoint > 3 && !startingAtk) {
+            //Debug.Log(distToPoint);
             rb.velocity = moveDir.normalized * (chargeAttackSpeed * 1.5f);
+            distToPoint = Vector3.Distance(transform.position, goToPoint);
+            if (distToPoint < 3) {
+                startingAtk = true;
+            }
+        } else if (!gotDir && startedAtk) {
+            goToPoint = GetFurthestPoint();
+            moveDir = goToPoint - transform.position;
+            distToPoint = Vector3.Distance(transform.position, goToPoint);
+            rb.velocity = moveDir.normalized * (chargeAttackSpeed * 1.5f);
+            if (distToPoint < 3) {
+                startingAtk = true;
+                gotDir = true;
+            }
         }
 
         
@@ -175,33 +187,32 @@ public class RatBossBehavior : MonoBehaviour {
         if (startedAtk && gotDir) {
             float _dist = Vector3.Distance(transform.position, player.transform.position);
             Debug.Log(_dist);
-            if (_dist < 5f) {
-                relocating = true;
+            if (_dist < 4f) {
+                
                 gotDir = false;
-            }
+            } else {
+                for (int i = 0; i < minions.Count; i++) {
+                    if (minions[i] == null) {
+                        minions.Remove(minions[i]);
+                    }
+                }
 
-            for (int i = 0; i < minions.Count; i++) {
-                if (minions[i] == null) {
-                    minions.Remove(minions[i]);
+                if (minions.Count == 0) {
+                    prevState = State.callAttack;
+                    currentState = State.inter;
+                    isInvulnerable = false;
                 }
             }
-
-            if (minions.Count == 0) {
-                prevState = State.callAttack;
-                currentState = State.inter;
-                isInvulnerable = false;
-            }
-
-            
-
         }
 
-        if (Vector3.SqrMagnitude(transform.position - goToPoint) < 4) {
+        if (startingAtk) {
+            Debug.Log("starting");
             rb.velocity = Vector3.zero;
-            relocating = false;
+            startingAtk = false;
             if (!startedAtk) {
                 SpawnEnemies();
                 startedAtk = true;
+                
             }
         }
     }
@@ -236,6 +247,7 @@ public class RatBossBehavior : MonoBehaviour {
 
             if (hit) {
                 rb.velocity = Vector3.zero;
+                isInvulnerable = false;
                 StartCoroutine(EndChargeAtk());
                 chargeFinished = true;
             }

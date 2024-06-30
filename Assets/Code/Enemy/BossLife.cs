@@ -23,6 +23,7 @@ public class BossLife : MonoBehaviour
         } else {
             isInvulnerable = ratBoss.isInvulnerable;
         }
+        Debug.Log(isInvulnerable);
     }
 
     public void TakeDamage(int damage) {
@@ -31,6 +32,7 @@ public class BossLife : MonoBehaviour
             if (life > 1) {
                 life -= damage;
             } else {
+                life -= damage;
                 OnZeroLife?.Invoke(this, EventArgs.Empty);
                 //Destroy(gameObject);
             }
