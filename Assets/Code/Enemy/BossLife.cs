@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,10 @@ public class BossLife : MonoBehaviour
     private int life;
     [SerializeField]
     private SwanBossBehavior swanBoss;
+    [SerializeField]
+    private RatBossBehavior ratBoss;
+
+    public event EventHandler OnZeroLife;
     
     private bool isInvulnerable;
 
@@ -16,8 +21,9 @@ public class BossLife : MonoBehaviour
         if (swanBoss != null) {
             isInvulnerable = swanBoss.isInvulnerable;
         } else {
-            // Todo: isInvulnerable do boss rato
+            isInvulnerable = ratBoss.isInvulnerable;
         }
+        Debug.Log(isInvulnerable);
     }
 
     public void TakeDamage(int damage) {
@@ -26,7 +32,9 @@ public class BossLife : MonoBehaviour
             if (life > 1) {
                 life -= damage;
             } else {
-                Destroy(gameObject);
+                life -= damage;
+                OnZeroLife?.Invoke(this, EventArgs.Empty);
+                //Destroy(gameObject);
             }
         }
     }

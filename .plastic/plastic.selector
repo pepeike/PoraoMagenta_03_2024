@@ -1,0 +1,4 @@
+repository "PoraoMagenta_03_2024@PORAO_MAGENTA_LTDA@cloud"
+  path "/"
+    br "/main"
+    co "/main"
