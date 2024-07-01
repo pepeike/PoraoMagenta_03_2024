@@ -7,14 +7,14 @@ public class EnemyLife : MonoBehaviour
 
     [SerializeField]
     private int life;
-    [SerializeField]
-    private Animator anim;
+    //[SerializeField]
+    //private Animator anim;
     public void TakeDamage(int damage) {
         if (life > 1) {
             life -= damage;
         } else {
-            anim.SetTrigger("died");
-            Invoke(nameof(Die), 3);
+            //anim.SetTrigger("died");
+            Die();
         }
     }
 

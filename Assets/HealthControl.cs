@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +7,20 @@ using UnityEngine.UI;
 public class HealthControl : MonoBehaviour
 {
 
-    public int healthcount = 3;
+    public int healthcount;
+    public PlayerControl playerControl;
     public Image Heart1;
     public Image Heart2;
     public Image Heart3;
 
     
 
-    public void TakeDamage()
+    public void Awake() {
+        healthcount = playerControl.hitPoints;
+        playerControl.tookDmg += TakeDamage;
+    }
+
+    public void TakeDamage(object sender, System.EventArgs e)
     {
         healthcount -= 1;
         

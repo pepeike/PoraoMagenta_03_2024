@@ -100,7 +100,7 @@ public class NPCDialogue : MonoBehaviour {
 
             activeLine = NPCLines[dialogueIndex];
         NPCName.text = activeLine.speaker;
-        dialogueWindow.SetActive(true);
+        dialogueWindow?.SetActive(true);
         
         StartCoroutine(ShowText());
 

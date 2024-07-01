@@ -44,7 +44,7 @@ public class EnemyScript : MonoBehaviour {
                 distanceToTarget = Vector3.SqrMagnitude(playerEnemyOffset);
                 //Debug.Log(distanceToTarget);
                 rb.velocity = playerEnemyOffset.normalized * enemySpeed;
-                transform.forward = playerEnemyOffset.normalized;
+                transform.forward = new Vector3(playerEnemyOffset.normalized.x, 0, playerEnemyOffset.normalized.z);
                 damageHitbox.transform.position = transform.position + new Vector3(playerEnemyOffset.normalized.x * maxDistance/2, 0f, playerEnemyOffset.normalized.z * maxDistance/2);
                 if (distanceToTarget <= maxDistance * maxDistance) {
                     //Debug.Log("Changing State");

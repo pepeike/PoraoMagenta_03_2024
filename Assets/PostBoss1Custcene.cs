@@ -1,17 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
-public class PostBoss1Custcene : MonoBehaviour
-{
+public class PostBoss1Custcene : MonoBehaviour {
     public string NPCName;
     [SerializeField] AssetLabelReference portraitsReference;
 
     [SerializeField]
     private NPCDialogue npcDialogue;
-
+    private int currentScene;
 
 
     //public List<DialogueLine> lines;
@@ -20,8 +18,8 @@ public class PostBoss1Custcene : MonoBehaviour
     private GameObject marker;
 
 
-    private void Awake()
-    {
+    private void Awake() {
+        currentScene = SceneManager.GetActiveScene().buildIndex;
         //marker = GetComponentInChildren<TextMeshPro>().gameObject;
         //marker.SetActive(false);
 
@@ -32,33 +30,31 @@ public class PostBoss1Custcene : MonoBehaviour
 
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Player")) {
             //marker.SetActive(true);
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.CompareTag("Player")) {
             //marker.SetActive(false);
         }
     }
 
-    public void Dialogue()
-    {
+    public void Dialogue() {
         Debug.Log(dialogueSet[0].speaker);
-        if (npcDialogue.dialogueStarted == false)
-        {
+        if (npcDialogue.dialogueStarted == false) {
             npcDialogue.InitializeDialogue(dialogueSet);
-        }
-        else
-        {
+        } else {
+
+            
+
             npcDialogue.NextText();
             EndCutscene2();
+
+
+
 
 
         }
@@ -66,11 +62,11 @@ public class PostBoss1Custcene : MonoBehaviour
 
     }
 
-    public void EndCutscene2()
-    {
-        if (npcDialogue.activeLine == null)
-        {
-            SceneManager.LoadScene("PreLevel2Cutscene");
+    public void EndCutscene2() {
+        if (npcDialogue.activeLine == null) {
+            SceneManager.UnloadSceneAsync(currentScene);
+            SceneManager.LoadSceneAsync(currentScene + 1);
+            
         }
 
 

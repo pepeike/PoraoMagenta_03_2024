@@ -11,7 +11,7 @@ public class PreLevel2Custcene : MonoBehaviour
 
     [SerializeField]
     private NPCDialogue npcDialogue;
-
+    private int currentScene;
 
 
     //public List<DialogueLine> lines;
@@ -22,6 +22,7 @@ public class PreLevel2Custcene : MonoBehaviour
 
     private void Awake()
     {
+        currentScene = SceneManager.GetActiveScene().buildIndex;
         //marker = GetComponentInChildren<TextMeshPro>().gameObject;
         //marker.SetActive(false);
 
@@ -70,7 +71,9 @@ public class PreLevel2Custcene : MonoBehaviour
     {
         if (npcDialogue.activeLine == null)
         {
-            SceneManager.LoadScene("Level2");
+            SceneManager.UnloadSceneAsync(currentScene);
+            SceneManager.LoadSceneAsync(currentScene + 1);
+            
         }
 
 

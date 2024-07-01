@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +23,8 @@ public class PlayerControl : MonoBehaviour
 
     private bool isJumping = false;
     private float jumpTimer = 0;
+
+    public HealthControl healthControl;
 
     public float rideHeight;
 
@@ -51,6 +54,7 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public bool canMove = true;
     public bool isInvulnerable;
+    public event EventHandler tookDmg;
 
     private bool isAttacking = false;
 
@@ -283,7 +287,23 @@ public class PlayerControl : MonoBehaviour
             StartCoroutine(CycleMovement());
             hitPoints -= damage;
             Invoke(nameof(ResetVulnerable), invulnerableCooldown);
+            tookDmg?.Invoke(this, EventArgs.Empty);
+            if (hitPoints == 0) {
+                Respawn();
+            }
         }
+    }
+
+    public Transform respawnPoint;
+
+    public void Respawn() {
+        if (hitPoints == 0) {
+            hitPoints = maxHitPoints;
+            for (int i = 0; i < hitPoints; i++) {
+                healthControl.GainHealth();
+            }
+        }
+        transform.position = respawnPoint.position;
     }
 
     public void ResetVulnerable()

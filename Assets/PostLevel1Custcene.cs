@@ -11,6 +11,7 @@ public class PostLevel1Custcene : MonoBehaviour
 
     [SerializeField]
     private NPCDialogue npcDialogue;
+    private int currentScene;
 
 
 
@@ -22,6 +23,7 @@ public class PostLevel1Custcene : MonoBehaviour
 
     private void Awake()
     {
+        currentScene = SceneManager.GetActiveScene().buildIndex;
         //marker = GetComponentInChildren<TextMeshPro>().gameObject;
         //marker.SetActive(false);
 
@@ -70,7 +72,8 @@ public class PostLevel1Custcene : MonoBehaviour
     {
         if (npcDialogue.activeLine == null)
         {
-            SceneManager.LoadScene("Boss1");
+            SceneManager.UnloadSceneAsync(currentScene);
+            SceneManager.LoadSceneAsync(currentScene + 1);
         }
 
 
